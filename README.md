@@ -61,7 +61,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Remove][product-screenshot1] ![Checked][product-screenshot2] ![Create][product-screenshot3] ![Edit][product-screenshot4] ![Select date][product-screenshot5] ![Tasks list][product-screenshot6] ![Tasks list][product-screenshot7]]
+[![Remove][product-screenshot1]]
+[![Checked][product-screenshot2]] 
+[![Create][product-screenshot3]] 
+[![Edit][product-screenshot4]] 
+[![Select date][product-screenshot5]] 
+[![Tasks list][product-screenshot6]] 
+[![Tasks list][product-screenshot7]]
 
 The simplest example of a Flutter To-Do application.
 
