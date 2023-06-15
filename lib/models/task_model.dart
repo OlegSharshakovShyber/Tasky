@@ -1,7 +1,7 @@
 class TaskModel {
   int uid;
   bool isCompleted;
-  final String value;
+  String value;
   bool? isPriority;
   String? date;
 

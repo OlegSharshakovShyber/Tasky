@@ -9,9 +9,7 @@ import 'package:tasky/ui/element/title/header/title_header_widget.dart';
 import 'package:tasky/ui/header/header_widget.dart';
 
 class TaskListScreen extends StatefulWidget {
-  const TaskListScreen({super.key, required this.title});
-
-  final String title;
+  const TaskListScreen({super.key});
 
   @override
   State<TaskListScreen> createState() => _TaskListScreenState();

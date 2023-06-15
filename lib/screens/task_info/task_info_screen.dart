@@ -1,54 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tasky/models/task_model.dart';
+import 'package:tasky/ui/element/priority/priority_widget.dart';
 import 'package:tasky/ui/element/title/content/sub_title_widget.dart';
 import 'package:tasky/ui/element/title/content/title_widget.dart';
 
 class TaskInfoScreen extends StatefulWidget {
-  const TaskInfoScreen({super.key, required this.title});
-
-  final String title;
+  const TaskInfoScreen({super.key});
 
   @override
   State<TaskInfoScreen> createState() => _TaskInfoScreenState();
 }
 
 class _TaskInfoScreenState extends State<TaskInfoScreen> {
-  ScrollController? _scrollController;
-  bool _lastStatus = true;
-  double _height = 140;
+  final TextEditingController textEditingController = TextEditingController();
 
-  void _scrollListener() {
-    if (_isShrink != _lastStatus) {
-      setState(() {
-        _lastStatus = _isShrink;
-      });
-    }
-  }
-
-  bool get _isShrink {
-    return _scrollController != null &&
-        _scrollController!.hasClients &&
-        _scrollController!.offset > (_height - kToolbarHeight);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController()..addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    _scrollController?.removeListener(_scrollListener);
-    _scrollController?.dispose();
-    super.dispose();
-  }
+  var task = TaskModel(
+    uid: 0,
+    isCompleted: false,
+    value: 'Task 1',
+    isPriority: true,
+    date: null,
+  );
 
   @override
   Widget build(BuildContext context) {
+    textEditingController.text = task.value;
     return Scaffold(
       backgroundColor: const Color(0xfff7f6f2),
       body: NestedScrollView(
-        controller: _scrollController,
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             const SliverAppBar(
@@ -65,7 +45,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                   Text(
                     "СОХРАНИТЬ",
                     style: TextStyle(
-                      color: Color(0xff007aff),
+                      color: Colors.white,
                       fontSize: 14,
                       fontFamily: "Roboto",
                       fontWeight: FontWeight.w500,
@@ -90,6 +70,10 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextFormField(
+                    controller: textEditingController,
+                    onChanged: (value) {
+                      task.value = value;
+                    },
                     maxLines: null,
                     minLines: 3,
                     decoration: const InputDecoration(
@@ -104,45 +88,67 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TitleWidget(
-                    "Важность",
-                    color: Colors.black,
-                  ),
-                  SubTitleWidget(
-                    "Нет",
-                    color: Color(0x4c000000),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: PriorityWidget(
+                isPriority: task.isPriority,
+                newPriorityCallback: (value) {
+                  setState(() {
+                    task.isPriority = value;
+                  });
+                },
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Divider(),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleWidget(
+                      const TitleWidget(
                         "Сделать до",
                         color: Colors.black,
                       ),
-                      SubTitleWidget(
-                        "2 июня 2021",
-                        color: Color(0xff007aff),
-                      ),
+                      task.date?.isNotEmpty == true
+                          ? SubTitleWidget(
+                              task.date.toString(),
+                              color: const Color(0xff007aff),
+                            )
+                          : const SizedBox(
+                              height: 14,
+                            ),
                     ],
                   ),
-                  Spacer(),
-                  Switch(value: false, onChanged: null)
+                  const Spacer(),
+                  Switch(
+                    value: task.date?.isNotEmpty == true,
+                    onChanged: (value) {
+                      if (value) {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2100),
+                        ).then((selectedDate) {
+                          if (selectedDate != null) {
+                            setState(() {
+                              task.date =
+                                  DateFormat('yyyy-MM-dd').format(selectedDate);
+                            });
+                          }
+                        });
+                      } else {
+                        setState(() {
+                          task.date = null;
+                        });
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Tasky',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: const TaskInfoScreen(title: 'Flutter Demo Home Page'),
+      home: const TaskInfoScreen(),
     );
   }
 }
