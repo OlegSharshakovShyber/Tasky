@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/screens/task_info/task_info_screen.dart';
 import 'package:tasky/screens/task_list/task_list_screen.dart';
 
 void main() {
@@ -12,12 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tasky',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: const TaskListPage(title: 'Flutter Demo Home Page'),
+      home: const TaskInfoScreen(title: 'Flutter Demo Home Page'),
     );
   }
 }

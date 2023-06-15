@@ -5,19 +5,19 @@ class HeaderWidget extends StatelessWidget {
     super.key,
     required this.expandedHeight,
     required this.title,
-    required this.background,
-    required this.actions,
+    this.background,
+    this.actions,
   });
 
   final double expandedHeight;
   final Widget? title;
-  final Widget background;
+  final Widget? background;
   final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      elevation: 0,
+      elevation: 16,
       pinned: true,
       expandedHeight: expandedHeight,
       flexibleSpace: FlexibleSpaceBar(
@@ -29,9 +29,7 @@ class HeaderWidget extends StatelessWidget {
           top: 16.0,
         ),
         title: title,
-        background: SafeArea(
-          child: background,
-        ),
+        background: background,
       ),
       actions: actions,
     );

@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/ui/element/checkbox/visibility_icon_widget.dart';
 import 'package:tasky/ui/element/task_item_widget.dart';
-import 'package:tasky/ui/element/title/sub_title_header_widget.dart';
-import 'package:tasky/ui/element/title/title_header_widget.dart';
+import 'package:tasky/ui/element/title/header/sub_title_header_widget.dart';
+import 'package:tasky/ui/element/title/header/title_header_widget.dart';
 import 'package:tasky/ui/header/header_widget.dart';
 
-class TaskListPage extends StatefulWidget {
-  const TaskListPage({super.key, required this.title});
+class TaskListScreen extends StatefulWidget {
+  const TaskListScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<TaskListPage> createState() => _TaskListPageState();
+  State<TaskListScreen> createState() => _TaskListScreenState();
 }
 
-class _TaskListPageState extends State<TaskListPage> {
+class _TaskListScreenState extends State<TaskListScreen> {
   ScrollController? _scrollController;
   bool _lastStatus = true;
   double _height = 140;
@@ -239,7 +239,7 @@ class _TaskListPageState extends State<TaskListPage> {
         onPressed: null,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
