@@ -13,7 +13,7 @@ class TitleHeaderWidget extends StatelessWidget {
     return Text(
       data,
       style: const TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 20,
         fontFamily: "Roboto",
         fontWeight: FontWeight.w500,

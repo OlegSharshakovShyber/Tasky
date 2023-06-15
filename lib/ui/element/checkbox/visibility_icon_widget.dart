@@ -18,7 +18,7 @@ class VisibilityIconWidget extends StatelessWidget {
       isCheckedIcon: Icons.visibility,
       isUncheckedIcon: Icons.visibility_off,
       size: 24,
-      color: const Color(0xff007aff),
+      color: Colors.white,
       onPressed: onPressed,
     );
   }

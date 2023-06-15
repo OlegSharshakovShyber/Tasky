@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Tasky',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: const TaskInfoScreen(),
+      home: const TaskListScreen(),
     );
   }
 }
