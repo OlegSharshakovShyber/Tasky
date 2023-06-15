@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/screens/task_info/task_info_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:tasky/models/task/task_provider.dart';
 import 'package:tasky/screens/task_list/task_list_screen.dart';
 
 void main() {
@@ -11,11 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Tasky',
-      theme: ThemeData.light(),
-      debugShowCheckedModeBanner: false,
-      home: const TaskListScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => TaskProvider(),
+      child: MaterialApp(
+        theme: ThemeData.light(),
+        debugShowCheckedModeBanner: false,
+        home: const TaskListScreen(),
+      ),
     );
   }
 }

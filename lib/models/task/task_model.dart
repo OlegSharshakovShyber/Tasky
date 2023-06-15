@@ -6,7 +6,7 @@ class TaskModel {
   String? date;
 
   TaskModel({
-    required this.uid,
+    this.uid = -1,
     required this.isCompleted,
     required this.value,
     this.isPriority,

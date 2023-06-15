@@ -1,54 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tasky/models/task_model.dart';
+import 'package:provider/provider.dart';
+import 'package:tasky/models/task/task_model.dart';
+import 'package:tasky/models/task/task_provider.dart';
 import 'package:tasky/ui/element/priority/priority_widget.dart';
 import 'package:tasky/ui/element/title/content/sub_title_widget.dart';
 import 'package:tasky/ui/element/title/content/title_widget.dart';
 
 class TaskInfoScreen extends StatefulWidget {
-  const TaskInfoScreen({super.key});
+  const TaskInfoScreen({super.key, this.task});
+
+  final TaskModel? task;
 
   @override
   State<TaskInfoScreen> createState() => _TaskInfoScreenState();
 }
 
 class _TaskInfoScreenState extends State<TaskInfoScreen> {
-  final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
+  bool? _isPriority;
+  String? _date;
 
-  var task = TaskModel(
-    uid: 0,
-    isCompleted: false,
-    value: 'Task 1',
-    isPriority: true,
-    date: null,
-  );
+  @override
+  void initState() {
+    super.initState();
+    if (widget.task != null) {
+      _textEditingController.text = widget.task?.value ?? "";
+      _isPriority = widget.task?.isPriority;
+      _date = widget.task?.date;
+    }
+  }
+
+  void addTask(TaskModel task) {
+    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    taskProvider.addTask(task);
+  }
+
+  void updateTask(TaskModel task) {
+    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    taskProvider.updateTask(task);
+  }
+
+  void deleteTask(int uid) {
+    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    taskProvider.deleteTask(uid);
+    Navigator.pop(context);
+  }
+
+  void _saveTask() {
+    final task = TaskModel(
+      isCompleted: false,
+      value: _textEditingController.text,
+      isPriority: _isPriority,
+      date: _date,
+    );
+
+    if (widget.task == null) {
+      addTask(task);
+    } else {
+      updateTask(task);
+    }
+
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-    textEditingController.text = task.value;
     return Scaffold(
       backgroundColor: const Color(0xfff7f6f2),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
-            const SliverAppBar(
+            SliverAppBar(
               elevation: 16,
               pinned: true,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.close,
+                  size: 24,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               title: Row(
                 children: [
-                  Icon(
-                    Icons.close,
-                    size: 24,
-                    color: Colors.black,
-                  ),
-                  Spacer(),
-                  Text(
-                    "СОХРАНИТЬ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w500,
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: _saveTask,
+                    child: const Text(
+                      "СОХРАНИТЬ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   )
                 ],
@@ -70,10 +118,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextFormField(
-                    controller: textEditingController,
-                    onChanged: (value) {
-                      task.value = value;
-                    },
+                    controller: _textEditingController,
                     maxLines: null,
                     minLines: 3,
                     decoration: const InputDecoration(
@@ -91,10 +136,10 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: PriorityWidget(
-                isPriority: task.isPriority,
+                isPriority: _isPriority,
                 newPriorityCallback: (value) {
                   setState(() {
-                    task.isPriority = value;
+                    _isPriority = value;
                   });
                 },
               ),
@@ -114,9 +159,9 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                         "Сделать до",
                         color: Colors.black,
                       ),
-                      task.date?.isNotEmpty == true
+                      _date?.isNotEmpty == true
                           ? SubTitleWidget(
-                              task.date.toString(),
+                        _date ?? "",
                               color: const Color(0xff007aff),
                             )
                           : const SizedBox(
@@ -126,7 +171,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                   ),
                   const Spacer(),
                   Switch(
-                    value: task.date?.isNotEmpty == true,
+                    value: _date?.isNotEmpty == true,
                     onChanged: (value) {
                       if (value) {
                         showDatePicker(
@@ -137,14 +182,14 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                         ).then((selectedDate) {
                           if (selectedDate != null) {
                             setState(() {
-                              task.date =
+                              _date =
                                   DateFormat('yyyy-MM-dd').format(selectedDate);
                             });
                           }
                         });
                       } else {
                         setState(() {
-                          task.date = null;
+                          _date = null;
                         });
                       }
                     },
@@ -153,22 +198,32 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
               ),
             ),
             const Divider(),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.delete,
-                    size: 24,
-                    color: Color(0xffff3b30),
-                  ),
-                  TitleWidget(
-                    "Удалить",
-                    color: Color(0xffff3b30),
-                  ),
-                ],
-              ),
-            )
+            widget.task != null
+                ? GestureDetector(
+                    onTap: () {
+                      var uid = widget.task?.uid;
+                      if (uid != null) {
+                        deleteTask(uid);
+                      }
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            size: 24,
+                            color: Color(0xffff3b30),
+                          ),
+                          TitleWidget(
+                            "Удалить",
+                            color: Color(0xffff3b30),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Container()
           ],
         ),
       ),
