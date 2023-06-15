@@ -76,6 +76,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
     );
   }
 
+  void deleteTask(int uid) {
+    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    taskProvider.deleteTask(uid);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskProvider>(
@@ -185,7 +190,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                             updateCompleteStateItem(item);
                           },
                           onDelete: () {
-                            itemList.remove(item);
+                            deleteTask(item.uid);
                           },
                           onTap: () {
                             _openEditTaskScreen(item);
