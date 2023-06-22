@@ -15,7 +15,7 @@ class TitleHeaderWidget extends StatelessWidget {
       style: const TextStyle(
         color: Colors.white,
         fontSize: 20,
-        fontFamily: "Roboto",
+        fontFamily: 'Roboto',
         fontWeight: FontWeight.w500,
         letterSpacing: 0.50,
       ),

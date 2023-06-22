@@ -34,38 +34,38 @@ class _PriorityWidgetState extends State<PriorityWidget> {
               children: <Widget>[
                 ListTile(
                   title: const SubTitleWidget(
-                    "Нет",
+                    'Нет',
                     color: Colors.black,
                   ),
                   onTap: () => {toggleMenu(), widget.newPriorityCallback(null)},
                 ),
                 ListTile(
                   title: const Row(
-                    children: [
+                    children: <Widget>[
                       Icon(
                         Icons.arrow_downward,
                         color: Color(0x33000000),
                         size: 16,
                       ),
                       SubTitleWidget(
-                        "Низкий",
+                        'Низкий',
                         color: Colors.black,
                       ),
                     ],
                   ),
                   onTap: () =>
-                      {toggleMenu(), widget.newPriorityCallback(false)},
+                      <void>{toggleMenu(), widget.newPriorityCallback(false)},
                 ),
                 ListTile(
                   title: const Row(
-                    children: [
+                    children: <Widget>[
                       Icon(
                         Icons.priority_high,
                         color: Color(0xffff3b30),
                         size: 16,
                       ),
                       SubTitleWidget(
-                        "Высокий",
+                        'Высокий',
                         color: Color(0xffff3b30),
                       ),
                     ],
@@ -79,18 +79,18 @@ class _PriorityWidgetState extends State<PriorityWidget> {
             onTap: toggleMenu,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 const TitleWidget(
-                  "Важность",
+                  'Важность',
                   color: Colors.black,
                 ),
                 widget.isPriority == null
                     ? const SubTitleWidget(
-                        "Нет",
+                        'Нет',
                         color: Color(0x4c000000),
                       )
                     : Row(
-                        children: [
+                        children: <Widget>[
                           Icon(
                             widget.isPriority == true
                                 ? Icons.priority_high
@@ -101,7 +101,7 @@ class _PriorityWidgetState extends State<PriorityWidget> {
                             size: 16,
                           ),
                           SubTitleWidget(
-                            widget.isPriority == true ? "Высокий" : "Низкий",
+                            widget.isPriority == true ? 'Высокий' : 'Низкий',
                             color: widget.isPriority == true
                                 ? const Color(0xffff3b30)
                                 : const Color(0x33000000),

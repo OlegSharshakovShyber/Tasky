@@ -5,12 +5,12 @@ import 'task_model.dart';
 
 class TaskProvider extends ChangeNotifier {
   int _nextUid = 1;
-  final List<TaskModel> _tasks = [];
+  final List<TaskModel> _tasks = <TaskModel>[];
 
   List<TaskModel> get tasks => _tasks;
 
   void addTask(TaskModel task) {
-    final taskWithUid = TaskModel(
+    final TaskModel taskWithUid = TaskModel(
       uid: _nextUid,
       isCompleted: task.isCompleted,
       value: task.value,
@@ -23,7 +23,7 @@ class TaskProvider extends ChangeNotifier {
   }
 
   void updateTask(TaskModel task) {
-    final index = _tasks.indexWhere((t) => t.uid == task.uid);
+    final int index = _tasks.indexWhere((TaskModel t) => t.uid == task.uid);
     if (index != -1) {
       _tasks[index] = task;
       notifyListeners();
@@ -31,7 +31,7 @@ class TaskProvider extends ChangeNotifier {
   }
 
   void deleteTask(int uid) {
-    _tasks.removeWhere((task) => task.uid == uid);
+    _tasks.removeWhere((TaskModel task) => task.uid == uid);
     notifyListeners();
   }
 }

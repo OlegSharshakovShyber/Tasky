@@ -60,7 +60,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const TaskInfoScreen(),
+        builder: (BuildContext context) => const TaskInfoScreen(),
       ),
     );
   }
@@ -69,7 +69,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => TaskInfoScreen(
+        builder: (BuildContext context) => TaskInfoScreen(
           task: task,
         ),
       ),
@@ -84,17 +84,19 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskProvider>(
-      builder: (context, taskProvider, _) {
-        final itemList = taskProvider.tasks;
+      builder: (BuildContext context, TaskProvider taskProvider, _) {
+        final List<TaskModel> itemList = taskProvider.tasks;
 
         void updateCompleteStateItem(TaskModel updateTaskItem) {
-          var index = itemList
+          final index = itemList
               .indexWhere((element) => element.uid == updateTaskItem.uid);
           setState(() {
             updateTaskItem.isCompleted = !updateTaskItem.isCompleted;
             itemList[index] = updateTaskItem;
           });
         }
+
+        final completedCount = itemList.where((el) => el.isCompleted).length;
 
         return Scaffold(
           backgroundColor: const Color(0xfff7f6f2),
@@ -106,12 +108,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   expandedHeight: _height,
                   title: _isShrink
                       ? const TitleHeaderWidget(
-                          "Мои дела",
+                    'Мои дела',
                         )
                       : null,
                   background: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
+                    children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(
                           left: 60.0,
@@ -119,17 +121,15 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: <Widget>[
                             const Spacer(),
                             const TitleHeaderWidget(
-                              "Мои дела",
+                              'Мои дела',
                             ),
                             const SizedBox(
                               height: 6,
                             ),
-                            SubTitleHeaderWidget(
-                              "Выполнено - ${itemList.where((element) => element.isCompleted).length}",
-                            ),
+                            SubTitleHeaderWidget('Выполнено - $completedCount'),
                           ],
                         ),
                       ),
@@ -147,7 +147,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     ],
                   ),
                   actions: _isShrink
-                      ? [
+                      ? <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(
                               bottom: 16,
@@ -177,13 +177,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Column(
-                      children: itemList.where((element) {
+                      children: itemList.where((TaskModel element) {
                         if (_checkedIsVisibleFlag) {
                           return true;
                         } else {
                           return !element.isCompleted;
                         }
-                      }).map((item) {
+                      }).map((TaskModel item) {
                         return TaskItemWidget(
                           data: item,
                           onComplete: () {

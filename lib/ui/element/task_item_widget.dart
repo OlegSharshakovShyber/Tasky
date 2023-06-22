@@ -3,7 +3,7 @@ import 'package:tasky/models/task/task_model.dart';
 import 'package:tasky/ui/element/checkbox/checkbox_icon_widget.dart';
 
 class TaskItemWidget extends StatefulWidget {
-  TaskItemWidget({
+  const TaskItemWidget({
     super.key,
     required this.data,
     required this.onComplete,
@@ -11,7 +11,7 @@ class TaskItemWidget extends StatefulWidget {
     this.onTap,
   });
 
-  TaskModel data;
+  final TaskModel data;
   final VoidCallback onComplete;
   final VoidCallback onDelete;
   final GestureTapCallback? onTap;
@@ -62,7 +62,7 @@ class _TaskItemWidgetState extends State<TaskItemWidget> {
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               CheckboxIconWidget(
                 widget.data.isCompleted,
                 isCheckedIcon: Icons.check_box,
@@ -82,10 +82,10 @@ class _TaskItemWidgetState extends State<TaskItemWidget> {
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           if (widget.data.isPriority != null)
                             Icon(
                               widget.data.isPriority == true
@@ -116,7 +116,7 @@ class _TaskItemWidgetState extends State<TaskItemWidget> {
                       ),
                       if (widget.data.date != null)
                         Text(
-                          "${widget.data.date}",
+                          '${widget.data.date}',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: const TextStyle(

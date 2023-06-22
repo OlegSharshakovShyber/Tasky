@@ -25,7 +25,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
   void initState() {
     super.initState();
     if (widget.task != null) {
-      _textEditingController.text = widget.task?.value ?? "";
+      _textEditingController.text = widget.task?.value ?? '';
       _isPriority = widget.task?.isPriority;
       _date = widget.task?.date;
     }
@@ -48,7 +48,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
   }
 
   void _saveTask() {
-    final task = TaskModel(
+    final TaskModel task = TaskModel(
       isCompleted: false,
       value: _textEditingController.text,
       isPriority: _isPriority,
@@ -69,8 +69,8 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
     return Scaffold(
       backgroundColor: const Color(0xfff7f6f2),
       body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
             SliverAppBar(
               elevation: 16,
               pinned: true,
@@ -85,16 +85,16 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                 },
               ),
               title: Row(
-                children: [
+                children: <Widget>[
                   const Spacer(),
                   GestureDetector(
                     onTap: _saveTask,
                     child: const Text(
-                      "СОХРАНИТЬ",
+                      'СОХРАНИТЬ',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
-                        fontFamily: "Roboto",
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -106,7 +106,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
         },
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -137,7 +137,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
               padding: const EdgeInsets.all(16.0),
               child: PriorityWidget(
                 isPriority: _isPriority,
-                newPriorityCallback: (value) {
+                newPriorityCallback: (bool? value) {
                   setState(() {
                     _isPriority = value;
                   });
@@ -151,17 +151,17 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                children: [
+                children: <Widget>[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       const TitleWidget(
-                        "Сделать до",
+                        'Сделать до',
                         color: Colors.black,
                       ),
                       _date?.isNotEmpty == true
                           ? SubTitleWidget(
-                              _date ?? "",
+                              _date ?? '',
                               color: const Color(0xff007aff),
                             )
                           : const SizedBox(
@@ -172,14 +172,14 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                   const Spacer(),
                   Switch(
                     value: _date?.isNotEmpty == true,
-                    onChanged: (value) {
+                    onChanged: (bool value) {
                       if (value) {
                         showDatePicker(
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2100),
-                        ).then((selectedDate) {
+                        ).then((DateTime? selectedDate) {
                           if (selectedDate != null) {
                             setState(() {
                               _date =
@@ -201,7 +201,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
             widget.task != null
                 ? GestureDetector(
                     onTap: () {
-                      var uid = widget.task?.uid;
+                      final int? uid = widget.task?.uid;
                       if (uid != null) {
                         deleteTask(uid);
                       }
@@ -209,14 +209,14 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                     child: const Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Row(
-                        children: [
+                        children: <Widget>[
                           Icon(
                             Icons.delete,
                             size: 24,
                             color: Color(0xffff3b30),
                           ),
                           TitleWidget(
-                            "Удалить",
+                            'Удалить',
                             color: Color(0xffff3b30),
                           ),
                         ],
