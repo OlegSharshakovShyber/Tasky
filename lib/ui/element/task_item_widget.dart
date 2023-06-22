@@ -26,16 +26,6 @@ class _TaskItemWidgetState extends State<TaskItemWidget> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Dismissible(
-        confirmDismiss: (direction) async {
-          if(direction == DismissDirection.startToEnd) {
-            widget.onComplete();
-          }
-          if(direction == DismissDirection.endToStart) {
-            widget.onDelete();
-            return true;
-          }
-          return false;
-        },
         key: Key(widget.data.uid.toString()),
         background: Container(
           color: Colors.green,
@@ -111,9 +101,14 @@ class _TaskItemWidgetState extends State<TaskItemWidget> {
                               widget.data.value,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
-                              style: const TextStyle(
-                                color: Colors.black,
+                              style: TextStyle(
+                                color: widget.data.isCompleted
+                                    ? const Color(0x4c000000)
+                                    : Colors.black,
                                 fontSize: 16,
+                                decoration: widget.data.isCompleted
+                                    ? TextDecoration.lineThrough
+                                    : null,
                               ),
                             ),
                           ),

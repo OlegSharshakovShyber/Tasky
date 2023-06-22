@@ -88,8 +88,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
         final itemList = taskProvider.tasks;
 
         void updateCompleteStateItem(TaskModel updateTaskItem) {
-          var index =
-          itemList.indexWhere((element) => element.uid == updateTaskItem.uid);
+          var index = itemList
+              .indexWhere((element) => element.uid == updateTaskItem.uid);
           setState(() {
             updateTaskItem.isCompleted = !updateTaskItem.isCompleted;
             itemList[index] = updateTaskItem;
@@ -106,8 +106,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   expandedHeight: _height,
                   title: _isShrink
                       ? const TitleHeaderWidget(
-                    "Мои дела",
-                  )
+                          "Мои дела",
+                        )
                       : null,
                   background: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -148,18 +148,18 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                   actions: _isShrink
                       ? [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 16,
-                        right: 24,
-                        top: 16,
-                      ),
-                      child: VisibilityIconWidget(
-                        _checkedIsVisibleFlag,
-                        onPressed: switchVisibilityFlag,
-                      ),
-                    ),
-                  ]
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 16,
+                              right: 24,
+                              top: 16,
+                            ),
+                            child: VisibilityIconWidget(
+                              _checkedIsVisibleFlag,
+                              onPressed: switchVisibilityFlag,
+                            ),
+                          ),
+                        ]
                       : null,
                 )
               ];

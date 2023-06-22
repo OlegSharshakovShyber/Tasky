@@ -4,7 +4,7 @@ class TitleWidget extends StatelessWidget {
   const TitleWidget(
     this.data, {
     super.key,
-        required this.color,
+    required this.color,
   });
 
   final String data;

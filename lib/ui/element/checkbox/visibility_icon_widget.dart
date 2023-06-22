@@ -3,10 +3,10 @@ import 'package:tasky/ui/element/checkbox/checkbox_icon_widget.dart';
 
 class VisibilityIconWidget extends StatelessWidget {
   const VisibilityIconWidget(
-      this.isChecked, {
-        super.key,
-        this.onPressed,
-      });
+    this.isChecked, {
+    super.key,
+    this.onPressed,
+  });
 
   final bool isChecked;
   final VoidCallback? onPressed;

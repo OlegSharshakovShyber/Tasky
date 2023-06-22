@@ -161,7 +161,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
                       ),
                       _date?.isNotEmpty == true
                           ? SubTitleWidget(
-                        _date ?? "",
+                              _date ?? "",
                               color: const Color(0xff007aff),
                             )
                           : const SizedBox(
