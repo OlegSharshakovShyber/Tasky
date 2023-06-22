@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/models/task/task_model.dart';
-import 'package:tasky/ui/element/checkbox/checkbox_icon_widget.dart';
+import 'package:tasky/data/models/task_model.dart';
+import 'package:tasky/features/task/presentation/task_list/widgets/checkbox_icon_widget.dart';
 
 class TaskItemWidget extends StatefulWidget {
   const TaskItemWidget({

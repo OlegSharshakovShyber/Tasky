@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/models/task/task_model.dart';
-import 'package:tasky/models/task/task_provider.dart';
-import 'package:tasky/screens/task_info/task_info_screen.dart';
-import 'package:tasky/ui/element/checkbox/visibility_icon_widget.dart';
-import 'package:tasky/ui/element/task_item_widget.dart';
-import 'package:tasky/ui/element/title/header/sub_title_header_widget.dart';
-import 'package:tasky/ui/element/title/header/title_header_widget.dart';
-import 'package:tasky/ui/header/header_widget.dart';
+import 'package:tasky/data/models/task_model.dart';
+import 'package:tasky/data/providers/task_provider.dart';
+import 'package:tasky/features/task/presentation/task_info/task_info_screen.dart';
+import 'package:tasky/features/task/presentation/task_list/widgets/visibility_icon_widget.dart';
+import 'package:tasky/features/task/presentation/task_list/widgets/task_item_widget.dart';
+import 'package:tasky/shared/components/sub_title_header_widget.dart';
+import 'package:tasky/shared/components/title_header_widget.dart';
+import 'package:tasky/features/task/presentation/task_list/widgets/header_widget.dart';
 
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
@@ -108,7 +108,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   expandedHeight: _height,
                   title: _isShrink
                       ? const TitleHeaderWidget(
-                    'Мои дела',
+                          'Мои дела',
                         )
                       : null,
                   background: Row(

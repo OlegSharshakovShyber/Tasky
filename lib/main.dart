@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/models/task/task_provider.dart';
-import 'package:tasky/screens/task_list/task_list_screen.dart';
+import 'package:tasky/data/providers/task_provider.dart';
+import 'package:tasky/features/task/presentation/task_list/task_list_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/ui/element/checkbox/checkbox_icon_widget.dart';
+import 'package:tasky/features/task/presentation/task_list/widgets/checkbox_icon_widget.dart';
 
 class VisibilityIconWidget extends StatelessWidget {
   const VisibilityIconWidget(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/models/task/task_model.dart';
-import 'package:tasky/models/task/task_provider.dart';
-import 'package:tasky/ui/element/priority/priority_widget.dart';
-import 'package:tasky/ui/element/title/content/sub_title_widget.dart';
-import 'package:tasky/ui/element/title/content/title_widget.dart';
+import 'package:tasky/data/models/task_model.dart';
+import 'package:tasky/data/providers/task_provider.dart';
+import 'package:tasky/features/task/presentation/task_info/widgets/priority_widget.dart';
+import 'package:tasky/features/task/presentation/task_info/widgets/sub_title_widget.dart';
+import 'package:tasky/features/task/presentation/task_info/widgets/title_widget.dart';
 
 class TaskInfoScreen extends StatefulWidget {
   const TaskInfoScreen({super.key, this.task});
