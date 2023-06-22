@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/data/models/task_model.dart';
 import 'package:tasky/data/providers/task_provider.dart';
-import 'package:tasky/features/task/presentation/task_info/widgets/priority_widget.dart';
+import 'package:tasky/features/task/presentation/task_info/widgets/priority_widget_old.dart';
 import 'package:tasky/features/task/presentation/task_info/widgets/sub_title_widget.dart';
 import 'package:tasky/features/task/presentation/task_info/widgets/title_widget.dart';
 
@@ -58,6 +58,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
     if (widget.task == null) {
       addTask(task);
     } else {
+      task.uid = widget.task?.uid ?? -1;
       updateTask(task);
     }
 
@@ -135,7 +136,7 @@ class _TaskInfoScreenState extends State<TaskInfoScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: PriorityWidget(
+              child: PriorityWidgetOld(
                 isPriority: _isPriority,
                 newPriorityCallback: (bool? value) {
                   setState(() {

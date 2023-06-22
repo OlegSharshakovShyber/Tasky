@@ -118,7 +118,7 @@ _Everything is very simple_
 2. Wait for the build to finish
 3. apk file is in the following path 
    ```sh
-   build/app/outputs/flutter-apk/app-release.apk
+   build/app/outputs/flutter-apk/app-release_v1.apk
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
