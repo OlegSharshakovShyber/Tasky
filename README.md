@@ -1,3 +1,8 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -56,13 +61,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Remove][product-screenshot1]]
-[![Checked][product-screenshot2]] 
-[![Create][product-screenshot3]] 
-[![Edit][product-screenshot4]] 
-[![Select date][product-screenshot5]] 
-[![Tasks list][product-screenshot6]] 
-[![Tasks list][product-screenshot7]]
+<p align="center">
+  <img src="images/screenshot_1.png" alt="Remove" width="200">
+  <img src="images/screenshot_2.png" alt="Checked" width="200">
+  <img src="images/screenshot_3.png" alt="Create" width="200">
+</p>
+<p align="center">
+  <img src="images/screenshot_4.png" alt="Edit" width="200">
+  <img src="images/screenshot_5.png" alt="Select date" width="200">
+  <img src="images/screenshot_6.png" alt="Tasks list" width="200">
+</p>
+<p align="center">
+  <img src="images/screenshot_7.png" alt="Tasks list" width="200">
+</p>
 
 The simplest example of a Flutter To-Do application.
 
@@ -198,12 +209,5 @@ Project Link: [https://github.com/OlegSharshakovShyber/Tasky](https://github.com
 [license-url]: https://github.com/OlegSharshakovShyber/Tasky/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/phoenixshoi
-[product-screenshot1]: images/screenshot_1.png
-[product-screenshot2]: images/screenshot_2.png
-[product-screenshot3]: images/screenshot_3.png
-[product-screenshot4]: images/screenshot_4.png
-[product-screenshot5]: images/screenshot_5.png
-[product-screenshot6]: images/screenshot_6.png
-[product-screenshot7]: images/screenshot_7.png
 [Fuller]: https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white
 [Flutter-url]: https://flutter.dev/
