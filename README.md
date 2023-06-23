@@ -22,7 +22,7 @@
     <a href="https://github.com/OlegSharshakovShyber/Tasky"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/OlegSharshakovShyber/Tasky/blob/main/release.apk">Download App</a>
+    <a href="https://github.com/OlegSharshakovShyber/Tasky/blob/main/release_v2.apk">Download App</a>
     ·
     <a href="https://github.com/OlegSharshakovShyber/Tasky/issues">Report Bug</a>
     ·
@@ -118,7 +118,7 @@ _Everything is very simple_
 2. Wait for the build to finish
 3. apk file is in the following path 
    ```sh
-   build/app/outputs/flutter-apk/app-release.apk
+   build/app/outputs/flutter-apk/app-release_v1.apk
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
