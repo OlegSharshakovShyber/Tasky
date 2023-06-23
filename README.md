@@ -22,7 +22,7 @@
     <a href="https://github.com/OlegSharshakovShyber/Tasky"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/OlegSharshakovShyber/Tasky/blob/main/release.apk">Download App</a>
+    <a href="https://github.com/OlegSharshakovShyber/Tasky/blob/main/release_v2.apk">Download App</a>
     ·
     <a href="https://github.com/OlegSharshakovShyber/Tasky/issues">Report Bug</a>
     ·

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../models/task_model.dart';
+import 'package:tasky/data/models/task_model.dart';
 
 class TaskProvider extends ChangeNotifier {
   int _nextUid = 1;
